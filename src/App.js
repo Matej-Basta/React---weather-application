@@ -1,23 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
+import weather from "./weather.json";
+import {Weather} from "./components/Weather.jsx";
+import React, {useState} from "react";
+
 
 function App() {
+
+  const [selected, setSelected] = useState("Monday");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      { weather.map((day, index) => (
+        <Weather key={index} day={day.day} min={day.min} max={day.max} selected={selected} setSelected={setSelected} humidity={day.humidity} img={day.img} percipitation={day.percipitation} wind={day.wind}  />
+      ))
+
+      }
     </div>
   );
 }
